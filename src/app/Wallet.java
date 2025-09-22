@@ -1,4 +1,4 @@
-package domain.model;
+package app;
 
 public class Wallet {
 }
