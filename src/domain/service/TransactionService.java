@@ -1,7 +1,7 @@
 package domain.service;
 
-import domain.enums.CryptoType;
 import domain.enums.Priority;
+import domain.model.Transaction;
 import domain.model.Wallet;
 import infrastructure.repository.TransactionRepository;
 import infrastructure.repository.WalletRepository;
@@ -10,6 +10,7 @@ public class TransactionService {
 
      TransactionRepository repo = new  TransactionRepository();
     private WalletRepository walle = WalletRepository.getInstanceWallet();
+
     private static final int BTC_TX_SIZE =300 ;
     private static final int ETH_GAS_LIMIT  =21000 ;
 
@@ -19,11 +20,14 @@ public class TransactionService {
          if (wallet == null) {
             return false;
          }else{
-             System.out.println(wallet.getId());
+             //wallet.getBalance() >= amount + fees
+             //destination YKON UNIQUE source
+             //priority NOT NULL
          }
 
-        //return repo.CreateTransaction( wallet , address   ,  source ,  destination,  amount ,  fees,  priority);
- return true;
+        Transaction transaction = new Transaction(wallet.getId() ,wallet.getType() ,wallet.getAddress(),wallet.getBalance(), source ,  destination,  amount ,  fees,  priority);
+        return repo.CreateTransaction(wallet ,transaction);
+
      }
 
 

@@ -22,13 +22,13 @@ public class Transaction extends Wallet {
         this.amount = amount;
         this.fees = fees ;
         this.priority = priority ;
-
     }
 
 
     public Transaction (String type, String address , double balance   ){
         super( type,  address , balance );
     }
+
 
 
 
