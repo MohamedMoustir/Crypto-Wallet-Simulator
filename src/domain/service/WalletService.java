@@ -1,5 +1,6 @@
 package domain.service;
 
+import domain.enums.CryptoType;
 import domain.model.Transaction;
 import domain.model.Wallet;
 import infrastructure.repository.WalletRepository;
@@ -12,12 +13,25 @@ public class WalletService {
 
     WalletRepository walletRepository = new WalletRepository();
 
-    public boolean CreateWallet (String type, String address , double balance ){
+    public boolean CreateWallet (int id_type){
 
-        Transaction transaction = new Transaction(type,  address , balance);
-        System.out.println("" + transaction.getId());
+        CryptoType type = null ;
+        String bitAddrese   = "";
+        double balance = 0;
+
+        if(id_type == 1){
+               type = CryptoType.BITCOIN;
+            bitAddrese  = "BTC-"+String.valueOf(UUID.randomUUID());
+          }else if(id_type == 2){
+              type = CryptoType.ETHEREUM;
+            bitAddrese  = "ETH-" + String.valueOf(UUID.randomUUID());
+          }
+
+        Transaction transaction = new Transaction(type.toString(), bitAddrese , balance);
 
         return walletRepository.CreateWallet(transaction);
 
     }
+
+
 }

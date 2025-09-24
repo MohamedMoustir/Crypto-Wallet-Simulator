@@ -14,7 +14,6 @@ public class validation {
         int value;
         while (true) {
             System.out.print(message);
-
             String input = sc.nextLine();
             try {
                 value = Integer.parseInt(input.trim());
@@ -51,7 +50,7 @@ public class validation {
                 return value;
 
             } else {
-                System.out.println(RED+"Veuillez entrer un Solde valide !"+ RESET);
+                System.out.println(RED+"Veuillez entrer un montant valide !"+ RESET);
                 sc.nextLine();
             }
         }
