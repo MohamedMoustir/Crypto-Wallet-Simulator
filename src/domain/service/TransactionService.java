@@ -6,28 +6,28 @@ import domain.model.Wallet;
 import infrastructure.repository.TransactionRepository;
 import infrastructure.repository.WalletRepository;
 
+import java.util.Objects;
+
 public class TransactionService {
 
      TransactionRepository repo = new  TransactionRepository();
     private WalletRepository walle = WalletRepository.getInstanceWallet();
 
-    private static final int BTC_TX_SIZE =300 ;
-    private static final int ETH_GAS_LIMIT  =21000 ;
+    private static final int BTC_TX_SIZE = 300 ;
+    private static final int ETH_GAS_LIMIT  = 21000 ;
 
     public boolean CreateTransaction(  String source , String destination, double amount , double fees, String priority){
         Wallet wallet = walle.findByAddress(source);
 
          if (wallet == null) {
             return false;
-         }else{
-             //wallet.getBalance() >= amount + fees
-             //destination YKON UNIQUE source
-             //priority NOT NULL
-         }
+         }else if(wallet.getBalance() < amount + fees || Objects.equals(destination, source) || priority == null){
+
+        return false;
+    }
 
         Transaction transaction = new Transaction(wallet.getId() ,wallet.getType() ,wallet.getAddress(),wallet.getBalance(), source ,  destination,  amount ,  fees,  priority);
         return repo.CreateTransaction(wallet ,transaction);
-
      }
 
 

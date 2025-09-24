@@ -37,10 +37,11 @@ public class Main {
            System.out.println(" [2]  Créer une nouvelle transaction");
            System.out.println(" [3]  Calculer la position dans le mempool et temps d'attente estimé");
            System.out.println(" [4]  Comparer les 3 fee levels avec position réelle dans la file");
-           System.out.println(" [5]  Exit" + RESET);
+           System.out.println(" [5]  Consulter le solde");
+           System.out.println(" [6]  Exit" + RESET);
 
            System.out.println("====================================\n");
-           int Choix = validation.readInt(BLUE + "Enter your choice: "+ RESET, 1, 5);
+           int Choix = validation.readInt(BLUE + "Enter your choice: "+ RESET, 1, 6);
 
            switch(Choix){
                case 1 :
@@ -76,9 +77,9 @@ public class Main {
                    double fees = transactionService.calculerFee(idFeelevel ,adresseSource);
 
                    Priority priority = transactionService.getPriority(idFeelevel);
-
                    transactionService.CreateTransaction( adresseSource ,  adresseDestination,  montant ,  fees,  String.valueOf(priority));
-                   //
+
+
                    break;
 
                case 3 :
@@ -89,7 +90,13 @@ public class Main {
                    break;
 
                case 5 :
+                   String address = ValidateAdresse.validatAdresse(BLUE + " Enter your address  "+ RESET);
+                   Wallet wallet = walletService.findByAddress(address);
+                   System.out.println(GREEN +" your solde is" + wallet.getBalance() + RESET);
+                   break ;
 
+               case 6 :
+                   sc.close();
                    break ;
 
                default :

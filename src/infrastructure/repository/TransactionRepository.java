@@ -26,8 +26,10 @@ public class TransactionRepository implements TransactionRepositoryInterface {
             stmt.setString(7, transaction.getPriority());
             int rows = stmt.executeUpdate();
 
-            if (rows > 0) {
+            if (rows > 0){
+
                 return true;
+
             }
 
         } catch (Exception e) {

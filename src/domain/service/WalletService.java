@@ -21,7 +21,7 @@ public class WalletService {
 
         if(id_type == 1){
                type = CryptoType.BITCOIN;
-            bitAddrese  = "BTC-"+String.valueOf(UUID.randomUUID());
+            bitAddrese  = "BTC-" + String.valueOf(UUID.randomUUID());
           }else if(id_type == 2){
               type = CryptoType.ETHEREUM;
             bitAddrese  = "ETH-" + String.valueOf(UUID.randomUUID());
@@ -33,5 +33,8 @@ public class WalletService {
 
     }
 
+    public Wallet findByAddress(String address){
+       return  walletRepository.findByAddress(address);
+    }
 
 }
