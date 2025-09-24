@@ -73,13 +73,22 @@ public class Main {
                    System.out.println(" [1]  ÉCONOMIQUE ");
                    System.out.println(" [2]  STANDARD");
                    System.out.println(" [3]  RAPIDE");
-                   int idFeelevel = validation.readInt(BLUE + " Choisir fee level : "+ RESET, 0, 3);
+
+                   int idFeelevel = validation.readInt(BLUE + " Choisir fee level : "+ RESET, 0, 4);
                    double fees = transactionService.calculerFee(idFeelevel ,adresseSource);
 
                    Priority priority = transactionService.getPriority(idFeelevel);
-                   transactionService.CreateTransaction( adresseSource ,  adresseDestination,  montant ,  fees,  String.valueOf(priority));
+                   boolean resulte = transactionService.CreateTransaction( adresseSource ,  adresseDestination,  montant ,  fees,  String.valueOf(priority));
 
-
+                     if(resulte){
+                         double balance = montant + fees ;
+                         boolean update = walletService.UbdateBalance( adresseSource, adresseDestination  ,balance ,fees);
+                         if(update){
+                             System.out.println(GREEN + " Mise à jour réussie du solde !" + RESET);
+                         }
+                     }else{
+                         System.out.println(RED + " Erreur Mise à jour. Vérifiez vos données ou compte déjà utilisé." + RESET);
+                     }
                    break;
 
                case 3 :

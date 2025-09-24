@@ -61,8 +61,6 @@ public class WalletRepository implements WalletRepositoryInterface{
             stmt.setString(1,address.toString() );
             ResultSet rs = stmt.executeQuery();
 
-
-
             if(rs.next()){
 
                 String type = rs.getString("type");
@@ -83,4 +81,27 @@ public class WalletRepository implements WalletRepositoryInterface{
         return null;
     }
 
+    public boolean UbdateBalance( String address ,double balance  ){
+
+        String sql = "UPDATE  wallet SET  balance = ?  WHERE address = ?";
+
+        try(Connection conn =  DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ){
+
+            stmt.setDouble(1,balance);
+            stmt.setString(2,address.toString());
+
+            int rows = stmt.executeUpdate();
+            if(rows > 0){
+                try(ResultSet res = stmt.getGeneratedKeys()){
+                        return true;
+                }catch(Exception e) {
+                    return false;
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false ;
+    }
 }
