@@ -22,7 +22,6 @@ public class TransactionService {
          if (wallet == null) {
             return false;
          }else if(wallet.getBalance() < amount + fees || Objects.equals(destination, source) || priority == null){
-
         return false;
     }
 

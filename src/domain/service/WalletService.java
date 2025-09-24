@@ -12,12 +12,13 @@ import static java.util.UUID.randomUUID;
 public class WalletService {
 
     WalletRepository walletRepository = new WalletRepository();
+    private WalletRepository walle = WalletRepository.getInstanceWallet();
 
     public boolean CreateWallet (int id_type){
 
         CryptoType type = null ;
         String bitAddrese   = "";
-        double balance = 0;
+        double balance = 1000000;
 
         if(id_type == 1){
                type = CryptoType.BITCOIN;
@@ -36,5 +37,27 @@ public class WalletService {
     public Wallet findByAddress(String address){
        return  walletRepository.findByAddress(address);
     }
+
+
+    public boolean UbdateBalance( String adresseSource,String adresseDestination  ,double balance ,double fees){
+
+        Wallet wallet = walle.findByAddress(adresseSource);
+
+        double balanceSource = wallet.getBalance() - balance;
+        if(wallet.getBalance() - balance > 0 ){
+            walletRepository.UbdateBalance(adresseSource ,balanceSource);
+
+            double balanceDestination = wallet.getBalance() + balance - fees;
+            walletRepository.UbdateBalance(adresseDestination ,balanceDestination);
+        }else{
+            return false;
+        }
+
+
+
+
+        return true;
+    }
+
 
 }
