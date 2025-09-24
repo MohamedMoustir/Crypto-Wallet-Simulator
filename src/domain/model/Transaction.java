@@ -11,10 +11,10 @@ public class Transaction extends Wallet {
     private double amount ;
     private double fees ;
     private String priority;
-    private String status ;
+    private String status = "PENDING";
 
 
-    public Transaction (UUID id_Wallet ,String type, String address , double balance  , UUID id ,String source ,String destination,double amount ,double fees,String priority, String status  ){
+    public Transaction (UUID id_Wallet ,String type, String address , double balance   ,String source ,String destination,double amount ,double fees,String priority ){
         super( id_Wallet,type,  address , balance );
         this.id = UUID.randomUUID();
         this.source = source ;
@@ -22,8 +22,9 @@ public class Transaction extends Wallet {
         this.amount = amount;
         this.fees = fees ;
         this.priority = priority ;
-        this.status = status;
+
     }
+
 
     public Transaction (String type, String address , double balance   ){
         super( type,  address , balance );
