@@ -1,5 +1,6 @@
 package domain.service;
 
+
 import domain.enums.CryptoType;
 import domain.model.Transaction;
 import domain.model.Wallet;
@@ -10,7 +11,6 @@ import java.util.UUID;
 import static java.util.UUID.randomUUID;
 
 public class WalletService {
-
     WalletRepository walletRepository = new WalletRepository();
     private WalletRepository walle = WalletRepository.getInstanceWallet();
 
@@ -29,7 +29,6 @@ public class WalletService {
           }
 
         Transaction transaction = new Transaction(type.toString(), bitAddrese , balance);
-
         return walletRepository.CreateWallet(transaction);
 
     }

@@ -4,9 +4,9 @@ FROM openjdk:8
 # Working directory
 WORKDIR /app
 
-# Copy source code and library
+# Copy source code and libraries
 COPY src ./src
-COPY lib/mysql-connector-j-8.3.0.jar ./lib/mysql-connector-j-8.3.0.jar
+COPY lib ./lib
 
 # Create output folder
 RUN mkdir -p out
@@ -14,11 +14,14 @@ RUN mkdir -p out
 # Generate sources.txt with all Java files
 RUN find src -name "*.java" > sources.txt
 
-# Compile all Java files with MySQL connector in classpath
-RUN javac -source 1.8 -target 1.8 -d out -cp "lib/mysql-connector-j-8.3.0.jar" @sources.txt
 
-# Create executable jar
+RUN javac -source 1.8 -target 1.8 -d out \
+    -cp "lib/mysql-connector-j-8.3.0.jar:lib/slf4j-api-1.7.36.jar:lib/logback-classic-1.2.11.jar:lib/logback-core-1.2.11.jar" \
+    @sources.txt
+
+
+
 RUN jar cfe app.jar app.Main -C out .
 
-# Run the app with MySQL connector in classpath
-CMD ["java", "-cp", "app.jar:lib/mysql-connector-j-8.3.0.jar", "app.Main"]
+# Run the app with all required libraries in classpath
+CMD ["java", "-cp", "out:lib/*", "app.Main"]

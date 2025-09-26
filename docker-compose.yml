@@ -10,18 +10,8 @@ services:
       - "8080:8080"
     volumes:
       - ./src:/app/src
-    command: >
-      sh -c "mkdir -p out &&
-      javac -source 1.8 -target 1.8 -d out -cp 'lib/*' \
-      src/app/*.java \
-      src/domain/service/*.java \
-      src/domain/model/*.java \
-      src/domain/enums/*.java \
-      src/domain/repository/*.java \
-      src/infrastructure/repository/*.java \
-      src/infrastructure/persistence/*.java \
-      src/util/*.java &&
-      java -cp 'out:lib/*' app.Main"
+      - ./lib:/app/lib
+    
     networks:
       - crypto-network
 
@@ -29,10 +19,10 @@ services:
     image: mysql:8
     container_name: crypto-wallet-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: crypto_wallet
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_ROOT_PASSWORD: root      
+      MYSQL_DATABASE: crypto_wallet  
+      MYSQL_USER: root             
+      MYSQL_PASSWORD:         
     ports:
       - "3306:3306"
     volumes:
@@ -41,8 +31,3 @@ services:
       - crypto-network
 
 
-volumes:
-  db_data:
-
-networks:
-  crypto-network:
