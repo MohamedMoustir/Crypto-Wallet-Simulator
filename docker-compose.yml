@@ -10,6 +10,7 @@ services:
       - "8080:8080"
     volumes:
       - ./src:/app/src
+      - ./lib:/app/lib
     command: >
       sh -c "mkdir -p out &&
       javac -source 1.8 -target 1.8 -d out -cp 'lib/*' \
@@ -22,6 +23,7 @@ services:
       src/infrastructure/persistence/*.java \
       src/util/*.java &&
       java -cp 'out:lib/*' app.Main"
+
     networks:
       - crypto-network
 
