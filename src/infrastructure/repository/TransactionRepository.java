@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 import domain.model.Mempool;
+
 import domain.model.Transaction;
 import domain.model.Wallet;
 import domain.repository.TransactionRepositoryInterface;
@@ -38,6 +39,7 @@ public class TransactionRepository implements TransactionRepositoryInterface {
             if (rows > 0){
                 logger.info("Transaction {} créée avec succès.", transaction.getId());
                 return transaction;
+
             }
 
         } catch (Exception e) {

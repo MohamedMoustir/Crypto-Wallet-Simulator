@@ -12,6 +12,19 @@ services:
       - ./src:/app/src
       - ./lib:/app/lib
     
+    command: >
+      sh -c "mkdir -p out &&
+      javac -source 1.8 -target 1.8 -d out -cp 'lib/*' \
+      src/app/*.java \
+      src/domain/service/*.java \
+      src/domain/model/*.java \
+      src/domain/enums/*.java \
+      src/domain/repository/*.java \
+      src/infrastructure/repository/*.java \
+      src/infrastructure/persistence/*.java \
+      src/util/*.java &&
+      java -cp 'out:lib/*' app.Main"
+
     networks:
       - crypto-network
 
