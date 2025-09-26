@@ -28,6 +28,7 @@ public class WalletRepository implements WalletRepositoryInterface{
              }
              return instanceWallet;
          }
+         
     public boolean CreateWallet(Wallet wallet){
 
        String sql = "INSERT INTO wallet (wallet_id ,type , address , balance) VALUES (?,?,?,?)";
@@ -81,8 +82,7 @@ public class WalletRepository implements WalletRepositoryInterface{
 
                 Wallet wallet = new Transaction(type, Aaddress, balance);
                 wallet.setId(UUID.fromString(wallet_id));
-                System.out.println(type);
-
+                
                 return wallet;
             }
 

@@ -11,6 +11,7 @@ services:
     volumes:
       - ./src:/app/src
       - ./lib:/app/lib
+    
     command: >
       sh -c "mkdir -p out &&
       javac -source 1.8 -target 1.8 -d out -cp 'lib/*' \
@@ -31,10 +32,10 @@ services:
     image: mysql:8
     container_name: crypto-wallet-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: crypto_wallet
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_ROOT_PASSWORD: root      
+      MYSQL_DATABASE: crypto_wallet  
+      MYSQL_USER: root             
+      MYSQL_PASSWORD:         
     ports:
       - "3306:3306"
     volumes:
@@ -43,8 +44,3 @@ services:
       - crypto-network
 
 
-volumes:
-  db_data:
-
-networks:
-  crypto-network:

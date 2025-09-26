@@ -1,12 +1,16 @@
 package domain.service;
 
 import domain.enums.Priority;
+import domain.model.Mempool;
 import domain.model.Transaction;
 import domain.model.Wallet;
 import infrastructure.repository.TransactionRepository;
 import infrastructure.repository.WalletRepository;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.PriorityQueue;
 
 public class TransactionService {
 
@@ -16,13 +20,13 @@ public class TransactionService {
     private static final int BTC_TX_SIZE = 300 ;
     private static final int ETH_GAS_LIMIT  = 21000 ;
 
-    public boolean CreateTransaction(  String source , String destination, double amount , double fees, String priority){
+    public Transaction CreateTransaction(  String source , String destination, double amount , double fees, String priority){
         Wallet wallet = walle.findByAddress(source);
 
          if (wallet == null) {
-            return false;
+            return null;
          }else if(wallet.getBalance() < amount + fees || Objects.equals(destination, source) || priority == null){
-        return false;
+        return null;
     }
 
         Transaction transaction = new Transaction(wallet.getId() ,wallet.getType() ,wallet.getAddress(),wallet.getBalance(), source ,  destination,  amount ,  fees,  priority);
@@ -97,7 +101,6 @@ public class TransactionService {
         return BTC ;
     }
 
-
     public Priority getPriority(int idFeelevel){
         switch (idFeelevel){
             case 1: return Priority.ECONOMIQUE;
@@ -106,5 +109,12 @@ public class TransactionService {
             default: return Priority.STANDARD;
         }
     }
+    
+    public List<Map<String, Object>> getAllTransaction(){
+		
+    	return repo.getAllTransaction();
+         
+
+	}
 
 }
