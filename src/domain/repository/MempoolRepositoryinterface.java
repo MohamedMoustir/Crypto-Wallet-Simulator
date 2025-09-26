@@ -1,5 +1,9 @@
 package domain.repository;
 
-public interface MempoolRepository {
-    boolean CreateMemPool(Transaction transaction ,int position_in_queue ,LocalDateTime estimated_time);
+import domain.model.Transaction;
+
+import java.time.LocalDateTime;
+
+public interface MempoolRepositoryinterface {
+    boolean CreateMemPool(Transaction transaction , int position_in_queue , LocalDateTime estimated_time);
 }
