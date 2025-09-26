@@ -1,8 +1,13 @@
 package infrastructure.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 import domain.model.Transaction;
 import domain.model.Wallet;
 import domain.repository.TransactionRepositoryInterface;
+import domain.service.WalletService;
 import infrastructure.persistence.DBConnection;
 
 import java.sql.Connection;
@@ -10,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class TransactionRepository implements TransactionRepositoryInterface {
+    private static final Logger logger = LoggerFactory.getLogger(TransactionRepository.class);
 
     public boolean CreateTransaction(Wallet wallet , Transaction transaction) {
 
@@ -27,13 +33,12 @@ public class TransactionRepository implements TransactionRepositoryInterface {
             int rows = stmt.executeUpdate();
 
             if (rows > 0){
-
+                logger.error("Transaction {} créée avec succès.", transaction.getId());
                 return true;
-
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(" Erreur lors de la création de la transaction: {}", e.getMessage(), e);
         }
           return true;
     }

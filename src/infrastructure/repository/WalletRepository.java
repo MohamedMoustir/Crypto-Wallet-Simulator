@@ -1,7 +1,14 @@
 package infrastructure.repository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 import domain.model.Transaction;
 import domain.model.Wallet;
 import domain.repository.WalletRepositoryInterface;
+import domain.service.WalletService;
 import infrastructure.persistence.DBConnection;
 
 import java.sql.Connection;
@@ -11,6 +18,7 @@ import java.sql.Statement;
 import java.util.UUID;
 
 public class WalletRepository implements WalletRepositoryInterface{
+    private static final Logger logger = LoggerFactory.getLogger(WalletRepository.class);
 
          private static WalletRepository instanceWallet;
 
@@ -35,18 +43,21 @@ public class WalletRepository implements WalletRepositoryInterface{
                  if(res.next()){
                      String id = String.valueOf(res.getInt(1));
                      wallet.setId(UUID.fromString(id));
+                     logger.error(" Wallet {} créée avec succès." ,wallet.getId());
 
                      return true;
                  }
 
                }catch(Exception e) {
+                   logger.error(" Erreur (DB) lors de la création de la Wallet: {}", e.getMessage(), e);
                    return false;
                }
            }
 
        }catch(Exception e){
-          e.printStackTrace();
-       }
+            logger.error(" Erreur (DB) lors de la création de la Wallite: {}", e.getMessage(), e);
+
+        }
         return true;
 
     }
@@ -74,9 +85,10 @@ public class WalletRepository implements WalletRepositoryInterface{
 
                 return wallet;
             }
+
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            logger.error("Erreur lors de la recherche du wallet pour la transaction: {}", e.getMessage(), e);
+
         }
         return null;
     }
@@ -93,6 +105,7 @@ public class WalletRepository implements WalletRepositoryInterface{
             int rows = stmt.executeUpdate();
             if(rows > 0){
                 try(ResultSet res = stmt.getGeneratedKeys()){
+
                         return true;
                 }catch(Exception e) {
                     return false;
@@ -100,7 +113,7 @@ public class WalletRepository implements WalletRepositoryInterface{
             }
 
         }catch(Exception e){
-            e.printStackTrace();
+            logger.error("Erreur lors de mes ajouts : {}", e.getMessage(), e);
         }
         return false ;
     }
