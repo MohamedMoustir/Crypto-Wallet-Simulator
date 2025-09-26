@@ -101,7 +101,13 @@ public class Main {
                case 5 :
                    String address = ValidateAdresse.validatAdresse(BLUE + " Enter your address  "+ RESET);
                    Wallet wallet = walletService.findByAddress(address);
-                   System.out.println(GREEN +" your solde is" + wallet.getBalance() + RESET);
+                   if(wallet != null){
+                       System.out.println(GREEN +" your solde is" + wallet.getBalance() + RESET);
+
+                   }else{
+                       System.out.println(RED + " Erreur Mise à jour. Vérifiez vos données ou compte déjà utilisé." + RESET);
+
+                   }
                    break ;
 
                case 6 :
