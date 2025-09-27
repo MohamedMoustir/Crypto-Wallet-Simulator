@@ -84,7 +84,7 @@ public class TransactionRepository implements TransactionRepositoryInterface {
         return transactions;
 
     } catch (Exception e) {
-        System.out.println("Error retrieving transactions: " + e.getMessage());
+        logger.error("Error retrieving transactions: " + e.getMessage());
         return transactions; 
     }
 }
@@ -102,7 +102,6 @@ public class TransactionRepository implements TransactionRepositoryInterface {
 	        stmt.setString(2, transaction_id);  
 
 	        int rows = stmt.executeUpdate();
-	        System.out.println("Updated rows: " + rows);
 
 	    } catch (Exception e) {
 	        logger.error("Erreur lors de la mise à jour : {}", e.getMessage(), e);

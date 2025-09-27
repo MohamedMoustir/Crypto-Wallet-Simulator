@@ -18,14 +18,11 @@ import java.util.*;
 			java.util.concurrent.ScheduledExecutorService scheduler =
 			        Executors.newScheduledThreadPool(1);
 			
-			
 			scheduler.scheduleAtFixedRate(()->{
 				
 				checkPendingTransactions();
 			},1000,10,TimeUnit.MINUTES);
 				
-			
-		
 			
 		}
 		

@@ -45,9 +45,11 @@ public class validation {
             if (sc.hasNextDouble()) {
                 value = sc.nextDouble();
                 sc.nextLine();
+                
                 if(value == 0) {
                     return 0;
                 }
+                
                 return value;
 
             } else {

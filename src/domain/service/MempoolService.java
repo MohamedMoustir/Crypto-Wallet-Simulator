@@ -51,9 +51,7 @@ public class MempoolService {
 		}
 		
 		double estimatedTime = (Math.ceil((double) position * BLOCK_TIME));
-		
 		Mempool.CreateMemPool(transaction, position , fees,estimatedTime);
-		
 		String message = GREEN + "Votre transaction est en position " + position + " sur " + Mempool.GetAllMemepool().size()  + RESET ;
 		return  message;
 		
