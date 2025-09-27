@@ -169,7 +169,6 @@ public class Main {
                     System.out.println("+-------------+-----------+--------------+------------------+");
                     break;
 
-
                 case 5:
                     String address = ValidateAdresse.validatAdresse(BLUE + " Enter your address  " + RESET);
                     Wallet wallet = walletService.findByAddress(address);
