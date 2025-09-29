@@ -13,10 +13,10 @@ import org.slf4j.LoggerFactory;
 
 import domain.model.Mempool;
 import domain.model.Transaction;
-import domain.repository.MempoolRepositoryInteface;
+import domain.repository.MempoolRepositoryinterface;
 import infrastructure.persistence.DBConnection;
 
-public class MempoolRepository implements MempoolRepositoryInteface{
+public class MempoolRepository implements MempoolRepositoryinterface{
 	 final Logger logger = LoggerFactory.getLogger(MempoolRepository.class);
 
 	private static MempoolRepository MempoolInstance ;
@@ -68,6 +68,7 @@ public class MempoolRepository implements MempoolRepositoryInteface{
 	@Override
 
 	 public  PriorityQueue<Mempool> GetAllMemepool() {
+		
 	    String sql = "SELECT * FROM mempool ";
 	    
 	    
@@ -98,8 +99,6 @@ public class MempoolRepository implements MempoolRepositoryInteface{
 	        return mempoolQueue;
 	    }
 	}
-
-	
 	
 	public List<Map<String, Object>> getMemPool() {
     String sql = 
@@ -137,7 +136,7 @@ public class MempoolRepository implements MempoolRepositoryInteface{
             mempool.add(tx);
         }
 
-        logger.info("Transactions aggregated successfully.");
+        logger.info("mempool aggregated successfully.");
         return mempool;
 
     } catch (Exception e) {
@@ -149,6 +148,4 @@ public class MempoolRepository implements MempoolRepositoryInteface{
 	
 	
 	
-public class MempoolRepository implements MempoolRepositoryinterface{
-
 }

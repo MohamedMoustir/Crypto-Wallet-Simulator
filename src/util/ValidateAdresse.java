@@ -8,20 +8,27 @@ import static util.validation.RESET;
 public class ValidateAdresse {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static String validatAdresse( String message) {
+    public static String validatAdresse(String message) {
+        Scanner sc = new Scanner(System.in);
         String adresse;
 
-        while (true) {
+        
             System.out.print(message);
-            adresse = sc.nextLine();
+            adresse = sc.nextLine().trim();
 
-            if (adresse.startsWith("BTC-")|| adresse.startsWith("ETH-")) {
-            return adresse;
-
-            } else {
-                System.out.println(RED + "Veuillez entrer un Adrsse valide !" + RESET);
-
+            if (adresse.equals("0")) {
+                return null; 
             }
-        }
+
+            if (adresse.startsWith("BTC-") || adresse.startsWith("ETH-")) {
+                return adresse;  
+            } else {
+            	
+                System.out.println("\u001B[31mVeuillez entrer une adresse valide !\u001B[0m");
+                
+            }
+			return null;
+        
     }
-}
+
+    }

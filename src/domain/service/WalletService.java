@@ -29,6 +29,10 @@ public class WalletService {
           }
 
         Transaction transaction = new Transaction(type.toString(), bitAddrese , balance);
+        
+        System.out.println("Votre adresse est " + transaction.getAddress() + "\n" +
+                "Votre type est " + transaction.getType());
+        
         return walletRepository.CreateWallet(transaction);
 
     }
@@ -38,11 +42,14 @@ public class WalletService {
     }
 
 
-    public boolean UbdateBalance( String adresseSource,String adresseDestination  ,double balance ,double fees){
+    public boolean UbdateBalance( String adresseSource,String adresseDestination  ,double montant ,double fees){
 
+    	double balance = montant + fees;
+    	
         Wallet wallet = walle.findByAddress(adresseSource);
 
         double balanceSource = wallet.getBalance() - balance;
+        
         if(wallet.getBalance() - balance > 0 ){
             walletRepository.UbdateBalance(adresseSource ,balanceSource);
 
@@ -51,8 +58,6 @@ public class WalletService {
         }else{
             return false;
         }
-
-
 
 
         return true;

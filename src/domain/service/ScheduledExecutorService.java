@@ -18,17 +18,13 @@ import java.util.*;
 			java.util.concurrent.ScheduledExecutorService scheduler =
 			        Executors.newScheduledThreadPool(1);
 			
-			
 			scheduler.scheduleAtFixedRate(()->{
 				
 				checkPendingTransactions();
 			},1000,10,TimeUnit.MINUTES);
 				
 			
-		
-			
 		}
-		
 		
 		
 		public static void checkPendingTransactions() {
@@ -36,12 +32,12 @@ import java.util.*;
 		    
 		      
 		    pendingTxs.sort((t1, t2) ->{
-     		   String p1 = (String) t1.get("priority");
+     		    String p1 = (String) t1.get("priority");
      		    String p2 = (String) t2.get("priority");
 
      		    List<String> priorityOrder = Arrays.asList("RAPIDE", "STANDARD", "ECONOMIQUE");
 
-     		    int cmpPriority = Integer.compare(priorityOrder.indexOf(p1), priorityOrder.indexOf(p2));
+     		    int cmpPriority = Integer.compare(priorityOrder.indexOf(p1), priorityOrder.indexOf(p2)); 
 
      		    if (cmpPriority != 0) {
      		        return cmpPriority; 

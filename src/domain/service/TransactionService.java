@@ -7,6 +7,7 @@ import domain.model.Wallet;
 import infrastructure.repository.TransactionRepository;
 import infrastructure.repository.WalletRepository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -35,6 +36,7 @@ public class TransactionService {
 
 
     public double calculerFee (int idFeelevel ,String adresseSource){
+    	
         Priority priority = null ;
         Priority Prio ;
         String adresse ;
@@ -110,11 +112,45 @@ public class TransactionService {
         }
     }
     
-    public List<Map<String, Object>> getAllTransaction(){
+    public List<Map<String, Object>> getAllTransaction(String adresse){
 		
-    	return repo.getAllTransaction();
-         
+   	 List<Map<String, Object>> transactions = repo.getAllTransaction();
+   	 
+   	 transactions.sort((t1, t2) -> {
+            String p1 = (String) t1.get("priority");
+            String p2 = (String) t2.get("priority");
+
+            List<String> priorityOrder = Arrays.asList("RAPIDE", "STANDARD", "ECONOMIQUE");
+            int cmpPriority = Integer.compare(priorityOrder.indexOf(p1), priorityOrder.indexOf(p2));
+            if (cmpPriority != 0) return cmpPriority;
+
+            double fee1 = (Double) t1.get("fees");
+            double fee2 = (Double) t2.get("fees");
+            return Double.compare(fee2, fee1);
+        });
+
+   	 
+
+        int position = 0;
+        for (Map<String, Object> tx : transactions) {
+            position++;
+
+            String walletId = (String) tx.get("walletId");
+            double fee = (Double) tx.get("fees");
+            String priority1 = (String) tx.get("priority");
+            String status = (String) tx.get("status");
+            String source = (String) tx.get("source");
+
+            String output = String.format("| %-2d | %-14s | %-5.4f | %-8s | %-6s |",
+                    position, walletId, fee, priority1, status);
+            System.out.println(output);   
+          
+        }
+
+   	return transactions ;
+        
 
 	}
+
 
 }
