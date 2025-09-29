@@ -29,6 +29,10 @@ public class WalletService {
           }
 
         Transaction transaction = new Transaction(type.toString(), bitAddrese , balance);
+        
+        System.out.println("Votre adresse est " + transaction.getAddress() + "\n" +
+                "Votre type est " + transaction.getType());
+        
         return walletRepository.CreateWallet(transaction);
 
     }
