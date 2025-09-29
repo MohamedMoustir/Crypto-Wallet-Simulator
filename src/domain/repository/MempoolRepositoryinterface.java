@@ -10,7 +10,6 @@ import domain.model.Transaction;
 public interface MempoolRepositoryinterface {
 
 	boolean CreateMemPool(Transaction transaction, int position_in_queue, double fee, double estimatedTime);
-
 	PriorityQueue<Mempool> GetAllMemepool();
 	List<Map<String, Object>> getMemPool();
 }
