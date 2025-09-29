@@ -66,7 +66,6 @@ public class MempoolRepository implements MempoolRepositoryinterface{
 	}
 
 	@Override
-
 	 public  PriorityQueue<Mempool> GetAllMemepool() {
 		
 	    String sql = "SELECT * FROM mempool ";
