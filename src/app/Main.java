@@ -100,7 +100,7 @@ public class Main {
           }
           
           if (walletService.CreateWallet(id_type)) {
-              System.out.println(GREEN + " Inscription réussie !" + RESET);
+              System.out.println(GREEN + " Inscription réussie !"  + RESET);
           } else {
               System.out.println(RED + " Erreur inscription. Vérifiez vos données ou compte déjà utilisé." + RESET);
           }
