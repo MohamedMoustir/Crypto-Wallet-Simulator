@@ -29,9 +29,6 @@ public class Transaction extends Wallet {
         super( type,  address , balance );
     }
 
-
-
-
     public String getSource() { return source; }
     public void setSource(String source) { this.source = source; }
 
