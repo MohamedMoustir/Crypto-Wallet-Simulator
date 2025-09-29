@@ -12,6 +12,9 @@ Le but est de permettre à l’utilisateur de :
 * Visualiser la position de sa transaction dans le mempool
 * Comparer le compromis coût/rapidité des transactions
 
+
+<img width="1108" height="383" alt="image" src="https://github.com/user-attachments/assets/b4c352a0-8275-416f-b1be-a5348efae1de" />
+
 ---
 
 ## 2️⃣ Structure en couches
@@ -21,6 +24,7 @@ Le but est de permettre à l’utilisateur de :
 * **Couche données (Repository Pattern)** : Stockage et recherche rapide (ArrayList, HashMap)
 * **Couche utilitaire** : Gestion des UUID, génération aléatoire, validation des adresses
 * **Autres** : Classes Enum pour les types, priorités, statuts
+<img width="441" height="476" alt="image" src="https://github.com/user-attachments/assets/193311f7-68d8-4bf6-bfea-848e32a67484" />
 
 ---
 
@@ -66,6 +70,7 @@ Mempool
   3. Voir ma position dans le mempool
   4. Comparer les 3 niveaux de frais
   5. Consulter l’état actuel du mempool
+<img width="1199" height="337" alt="image" src="https://github.com/user-attachments/assets/3270a094-2418-46d9-aa05-ee6031d07c07" />
 
 ---
 
@@ -109,7 +114,8 @@ java -cp bin Main
 
 ## 8️⃣ Captures d’écran de l’application
 
-*(à ajouter selon votre application)*
+<img width="551" height="328" alt="image" src="https://github.com/user-attachments/assets/f3a0bbd0-8dea-488a-a802-33b4a9924488" />
+<img width="783" height="316" alt="image" src="https://github.com/user-attachments/assets/4f2bb850-055b-443a-b35a-9b8f2bc9f4fa" />
 
 ---
 
@@ -126,5 +132,6 @@ java -cp bin Main
 ## 10️⃣ Auteur
 
 **Auteur** : Mohamed Moustir
+**Email** : itsMoustir@gmail.com
 
-Veux-tu que je fasse ça ?
+
