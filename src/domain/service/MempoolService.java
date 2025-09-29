@@ -75,7 +75,22 @@ public class MempoolService {
 	
 	public List<Map<String, Object>> ComparerLesFees() {
 		
-	    return Mempool.getMemPool();
+		List<Map<String, Object>> feeLevels =   Mempool.getMemPool();
+		 
+		for (Map<String, Object> entry : feeLevels) {
+			
+            String priority1 = (String) entry.get("priority");
+            int position1 = ((Number) entry.get("position")).intValue();
+            double totalFees = ((Number) entry.get("total_fees")).doubleValue();
+            double estTime = ((Number) entry.get("est_time_minutes")).doubleValue();
+
+            System.out.printf("| %-11s | %-9d | %-12.8f | %-16.2f |\n",
+                    priority1, position1, totalFees, estTime);
+        }
+		
+	    return feeLevels ;
+	    
+	    
 	}
 	
 	

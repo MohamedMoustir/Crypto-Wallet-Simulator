@@ -14,12 +14,13 @@ public class validation {
         int value;
         while (true) {
             System.out.print(message);
-            String input = sc.nextLine();
+            String input = sc.nextLine().trim();
+
             try {
-                value = Integer.parseInt(input.trim());
+                value = Integer.parseInt(input);
 
                 if (value == 0) {
-                    return 0;
+                    return 0; 
                 }
 
                 if (value >= min && value <= max) {
@@ -30,11 +31,11 @@ public class validation {
                 }
             } catch (NumberFormatException e) {
                 System.out.println(RED + "Veuillez entrer un nombre valide !" + RESET);
-                sc.nextLine();
-
             }
         }
     }
+
+
 
 
     public static double readDouble(String message) {

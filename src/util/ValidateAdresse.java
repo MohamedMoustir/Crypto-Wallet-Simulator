@@ -12,16 +12,23 @@ public class ValidateAdresse {
         Scanner sc = new Scanner(System.in);
         String adresse;
 
-        while (true) {
-
+        
             System.out.print(message);
-            adresse = sc.nextLine();
-                        
-            if (adresse.startsWith("BTC-") || adresse.startsWith("ETH-") || adresse.startsWith("0")) {
+            adresse = sc.nextLine().trim();
+
+            if (adresse.equals("0")) {
+                return null; 
+            }
+
+            if (adresse.startsWith("BTC-") || adresse.startsWith("ETH-")) {
                 return adresse;  
             } else {
+            	
                 System.out.println("\u001B[31mVeuillez entrer une adresse valide !\u001B[0m");
+                
             }
-        }
+			return null;
+        
     }
+
     }
