@@ -1,7 +1,7 @@
 
 
 # README.md – Crypto Wallet Simulator
-<img width="556" height="590" alt="image" src="https://github.com/user-attachments/assets/dc1c76b5-fa4e-4386-8232-560bbbc3148c" />
+<img width="1381" height="494" alt="image" src="https://github.com/user-attachments/assets/028fac06-096f-4ddc-be12-392f19df6e2f" />
 
 
 ## 1️⃣ Description du projet
@@ -135,6 +135,7 @@ java -cp bin Main
 
 **Auteur** : Mohamed Moustir
 **Email** : itsMoustir@gmail.com
+
 
 
 
