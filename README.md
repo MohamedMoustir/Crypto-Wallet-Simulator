@@ -139,33 +139,6 @@ Transactions en attente : 18
 
 ### 🔗 Classes Principales et leurs Relations
 
-#### **Wallet** (Classe Abstraite)
-- **Responsabilité** : Gérer un portefeuille crypto
-- **Attributs** : `id`, `address`, `cryptoType`, `balance`, `transactions`
-- **Méthodes** : `createTransaction()`, `getBalance()`, `addTransaction()`
-- **Relations** : 
-  - Héritage : `BitcoinWallet` et `EthereumWallet` héritent de `Wallet`
-  - Composition : Contient une liste de `Transaction`
-
-#### **Transaction**
-- **Responsabilité** : Représenter une transaction blockchain
-- **Attributs** : `id`, `fromAddress`, `toAddress`, `amount`, `fees`, `priority`, `status`, `timestamp`
-- **Méthodes** : `calculateFees()`, `getEstimatedTime()`, `displayDetails()`
-- **Relations** : Associée à un `Wallet` et une `FeePriority`
-
-#### **MempoolService** (Singleton)
-- **Responsabilité** : Gérer la file d'attente des transactions
-- **Méthodes** : `addTransaction()`, `calculatePosition()`, `generateRandomTransactions()`, `displayMempool()`
-- **Algorithme** : Trie les transactions par frais décroissants pour déterminer la position
-
-#### **FeeCalculator** (Interface)
-- **Responsabilité** : Calculer les frais selon le type de crypto
-- **Implémentations** :
-  - `BitcoinFeeCalculator` : taille (bytes) × tarif (satoshi/byte)
-  - `EthereumFeeCalculator` : gasLimit × gasPrice
-
----
-
 ## 📋 Prérequis
 
 Avant de commencer, assurez-vous d'avoir installé :
@@ -277,3 +250,4 @@ jar cvfe CryptoWalletSimulator.jar com.cryptowallet.Main -C bin .
 # Copier les dépendances
 cp lib/*.jar .
 ```
+
