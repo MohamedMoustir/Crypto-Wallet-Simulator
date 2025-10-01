@@ -73,25 +73,25 @@ Votre choix : _
 ```
 
 ### Comparaison des Niveaux de Frais
-```
+
 ╔══════════════════════════════════════════════════════════════╗
 ║           COMPARAISON DES NIVEAUX DE FRAIS                  ║
 ╚══════════════════════════════════════════════════════════════╝
 
+
+
 <img width="734" height="268" alt="image" src="https://github.com/user-attachments/assets/7b727ce5-3002-45f4-b824-0ca7ac4f1b6c" />
 
-```
-
 ### État du Mempool
-```
+
 ═══════════════════════════════════════════════════════════
                   ÉTAT DU MEMPOOL
 ═══════════════════════════════════════════════════════════
-Transactions en attente : 18
+
+
+
 
 <img width="895" height="608" alt="image" src="https://github.com/user-attachments/assets/96fdba5c-ad23-42c4-a55f-899ab71b52a3" />
-
-```
 
 ---
 
@@ -123,7 +123,7 @@ Transactions en attente : 18
 
 ### Structure en Couches
 
-```
+
 <img width="447" height="858" alt="image" src="https://github.com/user-attachments/assets/4d658b62-fd5b-4bc8-8dfa-c4cb50583ad9" />
 
 
@@ -243,5 +243,6 @@ jar cvfe CryptoWalletSimulator.jar com.cryptowallet.Main -C bin .
 # Copier les dépendances
 cp lib/*.jar .
 ```
+
 
 
