@@ -1,4 +1,5 @@
 # 💰 Crypto Wallet Simulator
+<img width="1377" height="748" alt="image" src="https://github.com/user-attachments/assets/4110ad33-c647-4f29-ad76-554fea121a3e" />
 
 > Une application console Java 8 pour simuler un portefeuille crypto avec mempool et optimisation des frais de transaction
 
@@ -53,6 +54,8 @@ L'application simule ce processus en créant un mempool virtuel avec des transac
 ## 📸 Captures d'Écran
 
 ### Menu Principal
+<img width="829" height="342" alt="image" src="https://github.com/user-attachments/assets/577297a8-236f-46a1-aec6-521ecec9e686" />
+
 ```
 ╔═══════════════════════════════════════════════════╗
 ║       CRYPTO WALLET SIMULATOR v1.0               ║
@@ -75,13 +78,8 @@ Votre choix : _
 ║           COMPARAISON DES NIVEAUX DE FRAIS                  ║
 ╚══════════════════════════════════════════════════════════════╝
 
-┌─────────────┬──────────────┬──────────────┬─────────────────┐
-│ Priorité    │ Frais (USD)  │ Position     │ Temps Estimé    │
-├─────────────┼──────────────┼──────────────┼─────────────────┤
-│ RAPIDE      │ 8.50$        │ 3/25         │ ~30 minutes     │
-│ STANDARD    │ 4.20$        │ 12/25        │ ~2 heures       │
-│ ECONOMIQUE  │ 1.80$        │ 21/25        │ ~3.5 heures     │
-└─────────────┴──────────────┴──────────────┴─────────────────┘
+<img width="734" height="268" alt="image" src="https://github.com/user-attachments/assets/7b727ce5-3002-45f4-b824-0ca7ac4f1b6c" />
+
 ```
 
 ### État du Mempool
@@ -91,15 +89,8 @@ Votre choix : _
 ═══════════════════════════════════════════════════════════
 Transactions en attente : 18
 
-┌────────────────────────────────────┬─────────────┐
-│ Transaction                         │ Frais (USD) │
-├────────────────────────────────────┼─────────────┤
-│ 0x742d35cc... (anonyme)            │ 8.50$       │
-│ 0x8a5f92bd... (anonyme)            │ 5.20$       │
-│ 0x1c4e67fa... (anonyme)            │ 2.80$       │
-│ >>> VOTRE TX: 0x9b2a14ef...        │ 2.00$       │
-│ 0x3f8d91ab... (anonyme)            │ 1.50$       │
-└────────────────────────────────────┴─────────────┘
+<img width="895" height="608" alt="image" src="https://github.com/user-attachments/assets/96fdba5c-ad23-42c4-a55f-899ab71b52a3" />
+
 ```
 
 ---
@@ -133,6 +124,8 @@ Transactions en attente : 18
 ### Structure en Couches
 
 ```
+<img width="447" height="858" alt="image" src="https://github.com/user-attachments/assets/4d658b62-fd5b-4bc8-8dfa-c4cb50583ad9" />
+
 
 ### 📐 Diagramme de Couches
 
@@ -149,7 +142,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 - ☑️ **Git** (pour cloner le repository)
 
 ### Recommandé
-- ☑️ **IDE** : IntelliJ IDEA, Eclipse, ou VSCode
+- ☑️ **IDE** : Eclipse
 - ☑️ **Plugin SonarLint** (analyse de qualité de code)
 - ☑️ **Plugin UML Generator** (visualisation des classes)
 
@@ -250,4 +243,5 @@ jar cvfe CryptoWalletSimulator.jar com.cryptowallet.Main -C bin .
 # Copier les dépendances
 cp lib/*.jar .
 ```
+
 
