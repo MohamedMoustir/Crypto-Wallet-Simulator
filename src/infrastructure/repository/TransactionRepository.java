@@ -47,9 +47,6 @@ public class TransactionRepository implements TransactionRepositoryInterface {
         }
           return transaction;
     }
-
-
-    
     
    public List<Map<String, Object>> getAllTransaction() {
     String sql = "SELECT * FROM transaction \r\n"
@@ -89,9 +86,6 @@ public class TransactionRepository implements TransactionRepositoryInterface {
     }
 }
 
-
-
-
    public void updateTransactionStatus(String transaction_id, String status) {
 	    String sql = "UPDATE transaction SET status = ? WHERE transaction_id = ?";
 
@@ -111,10 +105,5 @@ public class TransactionRepository implements TransactionRepositoryInterface {
    
  
 
-    // logger
-    //lamde exprition
-    //stream Api
-    // Date Time
-    //Optional
 
 }

@@ -62,8 +62,6 @@ public class WalletRepository implements WalletRepositoryInterface{
         return true;
 
     }
-
-
     public Wallet findByAddress(String address) {
         String sql = "SELECT * FROM wallet WHERE address = ?";
 

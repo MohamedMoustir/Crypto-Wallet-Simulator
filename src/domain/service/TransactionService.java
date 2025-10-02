@@ -1,7 +1,6 @@
 package domain.service;
 
 import domain.enums.Priority;
-import domain.model.Mempool;
 import domain.model.Transaction;
 import domain.model.Wallet;
 import infrastructure.repository.TransactionRepository;
@@ -11,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class TransactionService {
 
@@ -61,17 +60,19 @@ public class TransactionService {
 
         switch (priority) {
             case ECONOMIQUE:
-                gasPrice = 20L * 1_000_000_000L ;
+                gasPrice = 20 * 1000000000 ;
                 break;
             case STANDARD:
-                gasPrice = 50L * 1_000_000_000L ;
+                gasPrice = 50 * 1000000000 ;
                 break;
             case RAPIDE:
-                gasPrice = 1000L * 1_000_000_000L ;
+                gasPrice = 1000 * 1000000000 ;
                 break;
         }
 
-        // calcule fee b wei
+        
+        // 1 Gwei = 1,000,000,000 Wei
+        
        java.math.BigDecimal feewi =  java.math.BigDecimal.valueOf(ETH_GAS_LIMIT).multiply(java.math.BigDecimal.valueOf(gasPrice));
         java.math.BigDecimal weiEth = java.math.BigDecimal.TEN.pow(18);
         double feeEth =  feewi.divide(weiEth ,8 ,java.math.RoundingMode.HALF_UP).doubleValue();
@@ -95,9 +96,12 @@ public class TransactionService {
         }
 
 
+      // calcult btc with Satoshi  
         long feeBitc = BTC_TX_SIZE * satePerByte ;
-        //Satoshi
+        
+        //transcat  Satosh to btc 
         double BTC = feeBitc / 100000000.0 ;
+        
         System.out.println("Fee choisi: " + priority +"\n" + "Fee en satoshis: " +feeBitc + "\n" + "Fee en BTC: " + BTC +"\n");
 
         return BTC ;
@@ -116,21 +120,21 @@ public class TransactionService {
 		
    	 List<Map<String, Object>> transactions = repo.getAllTransaction();
    	 
-   	 transactions.sort((t1, t2) -> {
-            String p1 = (String) t1.get("priority");
-            String p2 = (String) t2.get("priority");
-
-            List<String> priorityOrder = Arrays.asList("RAPIDE", "STANDARD", "ECONOMIQUE");
-            int cmpPriority = Integer.compare(priorityOrder.indexOf(p1), priorityOrder.indexOf(p2));
-            if (cmpPriority != 0) return cmpPriority;
-
-            double fee1 = (Double) t1.get("fees");
-            double fee2 = (Double) t2.get("fees");
-            return Double.compare(fee2, fee1);
-        });
-
    	 
+   	transactions.stream().sorted((t1, t2) -> {
+        String p1 = (String) t1.get("priority");
+        String p2 = (String) t2.get("priority");
 
+        List<String> priorityOrder = Arrays.asList("RAPIDE", "STANDARD", "ECONOMIQUE");
+        int cmpPriority = Integer.compare(priorityOrder.indexOf(p1), priorityOrder.indexOf(p2));
+        if (cmpPriority != 0) return cmpPriority;
+
+        double fee1 = (Double) t1.get("fees");
+        double fee2 = (Double) t2.get("fees");
+        return Double.compare(fee2, fee1);
+    });
+   	 
+ 
         int position = 0;
         for (Map<String, Object> tx : transactions) {
             position++;
@@ -146,11 +150,23 @@ public class TransactionService {
             System.out.println(output);   
           
         }
-
    	return transactions ;
         
 
 	}
 
 
+    //Exercice 1 : Filtrage avec filter() - Stream API
+    public List<Map<String, Object>> getTransactionsByPriority(Priority priority) {
+        List<Map<String, Object>> transactions = repo.getAllTransaction();
+        
+        List<Map<String, Object>> filteredTransactions = transactions.stream()
+        		
+            .filter(e -> priority.equals(e.get("priority"))) 
+            
+            .collect(Collectors.toList());
+        return filteredTransactions;
+    }
+
+    
 }

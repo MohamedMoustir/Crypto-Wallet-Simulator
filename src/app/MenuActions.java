@@ -96,6 +96,9 @@ public class MenuActions {
 
     public static void exportCsvTransaction(TransactionService transactionService) {
         List<Map<String, Object>> transaction = transactionService.getAllTransaction("");
+           
         CSVExporter.exportTransactionsToCSV(transaction, "exports/transaction.csv");
     }
+    
+  
 }

@@ -10,7 +10,7 @@ public class Menu {
     public static void start() {
         Scanner sc = new Scanner(System.in);
         boolean isRunning = true;
-
+        //ScheduledExecutorService.startScheduler();
         WalletService walletService = new WalletService();
         TransactionService transactionService = new TransactionService();
         MempoolService mempoolService = new MempoolService();
